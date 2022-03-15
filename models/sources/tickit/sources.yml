@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: tickit
+    description: "redshift sample database"
+    tags: ["tickit"]
+    schema: tickit
+    database: prod
+    tables:
+      - name: category
+      - name: date
+      - name: event
+      - name: listing
+      - name: sales
+      - name: users
+      - name: venue
