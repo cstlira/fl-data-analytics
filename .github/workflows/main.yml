@@ -6,7 +6,12 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   pull_request:
-    branches: [ main, development, cert ]
+    types:
+      - opened
+    branches:
+      - main
+      - cert
+      - development
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
