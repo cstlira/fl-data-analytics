@@ -4,7 +4,7 @@ data_analytics:
       dbname: "{{ env_var('REDSHIFT_DATABASE') }}"
       host: "{{ env_var('REDSHIFT_URL') }}"
       password: "{{ env_var('REDSHIFT_PASSWORD') }}"
-      port: "{{ env_var('REDSHIFT_PORT') }}"
+      port: {{ env_var('REDSHIFT_PORT') }}
       schema: "{{ env_var('REDSHIFT_SCHEMA') }}"
       threads: 4
       type: redshift
