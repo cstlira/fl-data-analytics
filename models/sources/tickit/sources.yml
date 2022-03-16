@@ -2,9 +2,9 @@ version: 2
 
 sources:
   - name: tickit
-    description: "redshift sample database"
+    description: "Redshift Sample Database"
     tags: ["tickit"]
-    schema: tickit
+    schema: raw_data
     database: prod
     tables:
       - name: category

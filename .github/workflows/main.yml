@@ -11,28 +11,35 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  REDSHIFT_DATABASE: ${{ secrets.REDSHIFT_DATABASE }}
+  REDSHIFT_URL: ${{ secrets.REDSHIFT_URL }}
+  REDSHIFT_PASSWORD: ${{ secrets.REDSHIFT_PASSWORD }}
+  REDSHIFT_PORT: ${{ secrets.REDSHIFT_PORT }}
+  REDSHIFT_SCHEMA: ${{ secrets.REDSHIFT_SCHEMA }}_${{ github.ref }}_${{ github.event.number }}
+  REDSHIFT_USER: ${{ secrets.REDSHIFT_USER }}
+  DBT_PROFILES_DIR: ./profile
+  
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    environment: dbt-ci-environment
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          apt-get install git libpq-dev python-dev python3-pip
-          apt-get remove python-cffi
+          sudo apt-get install git libpq-dev python-dev python3-pip
+          sudo apt-get remove python-cffi
           pip install --upgrade cffi
           pip install cryptography~=3.4
           pip install dbt-redshift
-          dbt run
+          dbt deps --target ci
+          dbt run --target ci
