@@ -20,6 +20,7 @@ env:
   REDSHIFT_PORT: ${{ secrets.REDSHIFT_PORT }}
   REDSHIFT_SCHEMA: ${{ secrets.REDSHIFT_SCHEMA }}_${{ github.ref }}_${{ github.event.number }}
   REDSHIFT_USER: ${{ secrets.REDSHIFT_USER }}
+  DBT_PROFILES_DIR: ./profile
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -34,10 +35,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Setting up your schema name
-        run: echo $REDSHIFT_SCHEMA
-
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
@@ -46,4 +43,5 @@ jobs:
           pip install --upgrade cffi
           pip install cryptography~=3.4
           pip install dbt-redshift
-          dbt run --profiles-dir profile --target ci
+          dbt deps --target ci
+          dbt run --target ci
