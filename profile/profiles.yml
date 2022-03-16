@@ -1,11 +1,11 @@
 data_analytics:
   outputs:
     ci:
-      dbname: "{{ env_var('REDSHIFT_DATABASE') }}"
+      dbname: prod
       host: "{{ env_var('REDSHIFT_URL') }}"
       password: "{{ env_var('REDSHIFT_PASSWORD') }}"
-      port: "{{ env_var('REDSHIFT_PORT') }}"
-      schema: "{{ env_var('REDSHIFT_SCHEMA') }}"
+      port: 5439
+      schema: dbt_ci_github_run
       threads: 4
       type: redshift
       user: "{{ env_var('REDSHIFT_USER') }}"
