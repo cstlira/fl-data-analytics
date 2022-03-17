@@ -11,8 +11,9 @@ pipeline {
         stage('Install dbt & deps') {
             steps {
                 sh '''
-                      sudo apt-get install -y git libpq-dev python-dev python3-pip
-                      sudo apt-get remove -y python-cffi
+                      su -
+                      apt-get install -y git libpq-dev python-dev python3-pip
+                      apt-get remove -y python-cffi
                       pip install --upgrade cffi
                       pip install cryptography~=3.4
                       pip install dbt-redshift
