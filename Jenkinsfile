@@ -5,7 +5,6 @@ pipeline {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
         REDSHIFT_PASSWORD = credentials('jenkins-dbt-redshift-password')
         REDSHIFT_USER     = credentials('jenkins-dbt-redshift-user')
-        DBT_PROFILES_DIR  = ./profile
     }
   
   stages {
