@@ -11,7 +11,7 @@ pipeline {
         stage('Install dbt & deps') {
             steps {
                 sh '''
-                      su -
+                      apt-get -y update
                       apt-get install -y git libpq-dev python-dev python3-pip
                       apt-get remove -y python-cffi
                       pip install --upgrade cffi
