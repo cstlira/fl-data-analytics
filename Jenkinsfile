@@ -2,9 +2,9 @@ pipeline {
     agent { 
         docker  { 
             image 'ubuntu:latest'
-            args '--entrypoint=/bin/bash'  
-                }
-          }
+            args '--entrypoint='
+        }
+    }
     
     environment {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
