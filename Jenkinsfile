@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { docker { image 'python:3.10.1-alpine' } }
   
   environment {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
@@ -15,8 +15,6 @@ pipeline {
       }
       steps {
         sh '''
-          apt install -y python3.8
-          apt install -y python3-pip
           python --version
         ''' 
       }
