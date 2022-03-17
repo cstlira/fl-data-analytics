@@ -1,7 +1,5 @@
 pipeline {
-  agent {
-    any
-  }
+  agent any
   
   environment {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
