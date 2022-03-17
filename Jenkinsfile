@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install dbt & deps') {
             steps {
-                sh 'pip install --upgrade cffi'
+                sh 'pip install cffi'
                 sh 'pip install cryptography~=3.4'
                 sh 'pip install dbt-redshift'
                 sh 'dbt deps --target ci'
