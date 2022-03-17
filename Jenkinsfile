@@ -10,6 +10,7 @@ pipeline {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
         REDSHIFT_PASSWORD = credentials('jenkins-dbt-redshift-password')
         REDSHIFT_USER     = credentials('jenkins-dbt-redshift-user')
+        DBT_PROFILES_DIR  = './profile'
     }
     
     stages {
@@ -22,8 +23,8 @@ pipeline {
                       pip install --upgrade cffi
                       pip install cryptography~=3.4
                       pip install dbt-redshift
-                      dbt deps --target ci
-                      dbt run --target ci
+                      dbt deps --target ci --profiles-dir profile
+                      dbt run --target ci --profiles-dir profile
                 
                 '''
             }
