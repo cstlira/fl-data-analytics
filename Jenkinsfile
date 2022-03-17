@@ -2,7 +2,7 @@ pipeline {
     agent { 
         docker  { 
             image 'ubuntu:latest'
-            args '--entrypoint='
+            args '--entrypoint=/bin/sh --user root'
         }
     }
     
