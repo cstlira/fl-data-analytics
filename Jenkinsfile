@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install dbt & deps') {
             steps {
-                sh 'dbt deps'
+                sh 'deps'
             }
         }
     }
