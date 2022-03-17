@@ -15,8 +15,8 @@ pipeline {
       }
       steps {
         sh '''
-          sudo apt install -y python3.8
-          sudo apt install -y python3-pip
+          apt install -y python3.8
+          apt install -y python3-pip
           python --version
         ''' 
       }
