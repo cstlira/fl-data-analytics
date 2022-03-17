@@ -14,7 +14,9 @@ pipeline {
         branch 'PR-*'
       }
       steps {
-        sh ''' 
+        sh '''
+          sudo apt install -y python3.8
+          sudo apt install -y python3-pip
           python --version
         ''' 
       }
