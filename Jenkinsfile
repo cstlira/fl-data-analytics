@@ -1,5 +1,5 @@
 pipeline {
-    agent { docker { image 'fishtownanalytics/dbt:1.0.0' } }
+    agent { docker { image 'ubuntu:latest' } }
     
     environment {
         REDSHIFT_URL      = credentials('jenkins-dbt-redshift-url')
@@ -10,7 +10,16 @@ pipeline {
     stages {
         stage('Install dbt & deps') {
             steps {
-                sh 'dbt run'
+                sh '''
+                      apt-get install -y git libpq-dev python-dev python3-pip
+                      apt-get remove -y python-cffi
+                      pip install --upgrade cffi
+                      pip install cryptography~=3.4
+                      pip install dbt-redshift
+                      dbt deps --target ci
+                      dbt run --target ci
+                
+                '''
             }
         }
     }
